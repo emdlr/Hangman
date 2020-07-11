@@ -1,0 +1,70 @@
+body {
+    font-family: 'Finger Paint', cursive;
+    margin: 0;
+    padding: 0;
+    background: black;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    grid-template-columns: 35% 30% 35%;
+  }
+  .login-title {
+    grid-column: 1 / span 3;
+    text-align: center;
+    font-size: 50px;
+    font-style: italic;
+    color: whitesmoke;
+    padding-top: 2%;
+  }
+  .mainlogin{
+      border-style: dashed;
+      color: white;
+      border-width: 5px;
+  }
+  label{
+    color: white;
+    font-size: 25px;
+  }
+  .sec1{
+  }
+  .sec2{
+  }
+  button:hover {
+    opacity: 0.8;
+  }
+  .loginbtn{
+    font-family: 'Finger Paint', cursive;
+    width: auto;
+    padding: 15px 15px;
+    font-size: 20px;
+  }
+  #exit-login {
+    background-color:black;
+    color: whitesmoke;
+  }
+  #start-game {
+    background-color:whitesmoke;  
+    color: black;
+  }
+  input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size:20px;
+  }
+  .level-list li{
+      list-style-type: none;
+      color: white;
+      font-size: 25px;
+  }
+  .level-list li:hover{
+    color: rgb(27, 106, 226);
+    font-style: italic;
+    opacity: 0.8;
+
+  }
