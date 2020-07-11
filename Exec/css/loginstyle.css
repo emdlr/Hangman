@@ -2,8 +2,8 @@ body {
     font-family: 'Finger Paint', cursive;
     margin: 0;
     padding: 0;
-    background: black;
-    height: 100vh;
+    background: url('../img/blackboard1.jpg') black;
+    height: 110vh;
     width: 100vw;
     box-sizing: border-box;
     display: grid;
@@ -21,11 +21,17 @@ body {
   .mainlogin{
       border-style: dashed;
       color: white;
-      border-width: 5px;
+      border-width: 7px;
+  }
+  .mainlogin input{
+    font-family: 'Schoolbell', cursive;
+    font-weight: bolder;
+    font-size: 25px;
+
   }
   label{
     color: white;
-    font-size: 25px;
+    font-size: 27px;
   }
   .sec1{
   }
@@ -37,8 +43,9 @@ body {
   .loginbtn{
     font-family: 'Finger Paint', cursive;
     width: auto;
-    padding: 15px 15px;
+    padding: 10px;
     font-size: 20px;
+    width: 110px;
   }
   #exit-login {
     background-color:black;
@@ -57,14 +64,25 @@ body {
     box-sizing: border-box;
     font-size:20px;
   }
-  .level-list li{
-      list-style-type: none;
+  .level-list{
       color: white;
-      font-size: 25px;
+      font-size: 27px; 
+      list-style: none;
+
   }
-  .level-list li:hover{
-    color: rgb(27, 106, 226);
+  .newLi:hover{
+    color: royalblue;
     font-style: italic;
     opacity: 0.8;
-
+  }
+  .levelSelected{
+    color: royalblue;
+    font-style: italic;
+    font-size: 30px;
+    text-decoration: line-through;
+  }
+  .level-list li:before{
+    content: '\1F3AE'; 
+    margin-left: -20px; 
+    margin-right: 10px; 
   }
