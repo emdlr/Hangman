@@ -1,0 +1,85 @@
+body{
+    background: url('../img/blackboard.png') gray;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    font-family: 'Finger Paint', cursive;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    border-style: solid;
+    display: grid;
+    grid-template-rows: 98%;
+    grid-template-columns: 25% 55% 20%;
+}
+.playerData{
+    grid-column: 1;
+    border-style: solid;
+    width: 88%;
+    height: 20%;
+    margin-left: 11%;
+    margin-top: 15%;
+    color:whitesmoke;
+    font-size: 1.2vw;
+}
+.abc{
+    grid-column: 1;
+    border-style: solid;
+    width: 88%; 
+    height: 65%;
+    margin-left: 11%;
+    color:whitesmoke;
+    font-size: 1.3vw; 
+    
+}
+.title{
+    grid-column: 2;
+    border-style: solid;
+    width: 100%;
+    height: 10%;
+    margin-top: 8%;
+    background: url('../img/title.png');
+    background-size: 80% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.hint{
+    grid-column: 2;
+    border-style: solid;
+    width: 100%;
+    height: 6%;
+}
+.board{
+    grid-column: 2;
+    border-style: solid;
+    width: 100%;
+    height: 65%;
+}
+.buttons{
+    grid-column: 2;
+    border-style: solid;
+    width: 100%;
+    height: 10%;
+}
+.timer{
+    grid-column: 3;
+    border-style: solid;
+    width: 85%;
+    height: 20%;
+    margin-right: 11%;
+    margin-top: 15%;
+    color:whitesmoke;
+    font-size: 1.5vw;
+    text-align: center;
+}
+.hangman{
+    grid-column: 3;
+    border-style: solid;
+    width: 85%;
+    height: 65.5%;
+}
+.abc table td{
+    border-style: solid;
+    width: 10.3vw;
+};
