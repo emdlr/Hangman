@@ -30,12 +30,22 @@ body{
     height: 65%;
     margin-left: 11%;
     color:whitesmoke;
-    font-size: 1.3vw; 
-    
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-items: center;
 }
+.abcFlex{
+    width: 48%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px; 
+    height: 4vh;
+    font-size: 30px;
+}
+
 .title{
     grid-column: 2;
-    border-style: solid;
     width: 100%;
     height: 10%;
     margin-top: 8%;
@@ -46,15 +56,37 @@ body{
 }
 .hint{
     grid-column: 2;
-    border-style: solid;
     width: 100%;
-    height: 6%;
+    height: 10%;
+    color: whitesmoke;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.5em;
+    border-style: solid;
+
 }
 .board{
     grid-column: 2;
     border-style: solid;
     width: 100%;
     height: 65%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3,1fr);
+
+}
+.secFrame{
+display: flex;
+justify-content: space-around;
+flex-flow: row wrap;
+}
+.secFrame div{
+    border-bottom: white;
+    border-bottom-style: solid;
+    height: 9vh;
+    width: 5%;
+    text-align: center;
+    font-size: 60px;
 }
 .buttons{
     grid-column: 2;
@@ -82,4 +114,4 @@ body{
 .abc table td{
     border-style: solid;
     width: 10.3vw;
-};
+}
