@@ -5,7 +5,7 @@ const loginHeader = document.querySelector('.login-title');
 const loginName = document.querySelector('.mainlogin input');
 const mainLogin = document.querySelector('.mainlogin');
 const gameLevels = document.querySelector('.level-list');
-const logExit = document.querySelector('#exit-login');
+//const logExit = document.querySelector('#exit-login');
 const logStart = document.querySelector('#start-game');
 //Initialize Index Variables from Objects
 const playerData = document.querySelector('.playerData');
