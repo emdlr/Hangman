@@ -4,7 +4,6 @@ logExit.innerText='Exit';
 logStart.innerText='Start';
 loginName.setAttribute('placeholder','Enter Player Name');
 window.opener;
-
 //Naming Loging labels and level options
 let isFLabel=true;
 loginLabels.forEach(element => {
@@ -49,7 +48,7 @@ logStart.addEventListener('click',startGame);
 
 //Functions
 function exitGame(e){
-    e.preventDefault();
+    window.history.back;
     window.close();
 }
 function selectGameLevel(e){
