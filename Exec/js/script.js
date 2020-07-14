@@ -3,6 +3,7 @@ let player = new Player (sessionStorage.getItem('nameStr'),sessionStorage.getIte
 //let player = new Player('EDGAR', 'hard',0,0);
 let switch1=true;
 let switch2=true;
+window.opener;
 
 //Create Player Data
 player.myGameData(createRows(3),createCells(5));
@@ -12,8 +13,8 @@ createABC();
 startGameBtn.addEventListener('click',startGame);
 tABC.addEventListener('click',pickupCharacter);
 exit.onclick = function (e){
+    window.open('login.html');
     window.close();
-    alert('CLOSE YOUR TAB');
 };
 startGameBtn.onmouseover = function () {
         lblStrt.style.color ='blue';

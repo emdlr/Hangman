@@ -23,7 +23,7 @@ let imgHM = document.createElement('img');
 let exit = document.querySelector('#exitBtn');
 let lblStrt = document.querySelector('#lblStr');
 let lblExit = document.querySelector('#lblExt');
-
+window.opener;
 //Initialize Global Login Aux Varables
 let lvlSelected;
 //Initialize Global Index Aux Varables

@@ -3,6 +3,7 @@ loginHeader.innerText = 'Hangman Game';
 logExit.innerText='Exit';
 logStart.innerText='Start';
 loginName.setAttribute('placeholder','Enter Player Name');
+window.opener;
 
 //Naming Loging labels and level options
 let isFLabel=true;
@@ -50,7 +51,6 @@ logStart.addEventListener('click',startGame);
 function exitGame(e){
     e.preventDefault();
     window.close();
-    alert('CLOSE YOUR TAB');
 }
 function selectGameLevel(e){
     e.preventDefault();
@@ -72,7 +72,8 @@ function startGame(e){
         let glStr = lvlSelected.innerText;
         sessionStorage.setItem('nameStr',nameStr);
         sessionStorage.setItem('glStr',glStr);
-        window.open('index.html','_self');
+        window.open('index.html');
+        window.close();
     }else
         alert('Name or Game Level may be Missing');
 };
