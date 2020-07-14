@@ -50,6 +50,7 @@ logStart.addEventListener('click',startGame);
 function exitGame(e){
     e.preventDefault();
     window.close();
+    alert('CLOSE YOUR TAB');
 }
 function selectGameLevel(e){
     e.preventDefault();

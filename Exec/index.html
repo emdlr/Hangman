@@ -6,6 +6,7 @@
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <link rel="icon" href="img/icon.png" type="image/icon type">
     <title>Hangman Game</title>
 </head>
@@ -20,11 +21,14 @@
         <div class="board">
             <section class="fstFrame"></section>
             <section class="secFrame" id="secFrame"></section>
-            <section class="trdFrame"></section>
+            <section class="trdFrame">
+                <label class="lbl" id="lblStr">Hit Chalk to START</label>
+                <label class="lbl" id="lblExt">Hit Eraser to EXIT</label> 
+            </section>
         </div>
         <div class="buttons">
-            <button id="startBtn">START</button>
-            <button>EXIT</button>
+            <div id="startBtn"></div>
+            <div id="exitBtn"></div>
         </div>
     </middle>
     <right class="right">

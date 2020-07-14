@@ -12,14 +12,17 @@ const playerData = document.querySelector('.playerData');
 let pName = document.createElement('p');
 let center1 = document.createElement('center');
 let center2 = document.createElement('center');
-let tScore = document.querySelector('.abc');
+let tABC = document.querySelector('.abc');
 let timeBox = document.querySelector('.timer');
 let timer = document.createElement('p');
 let timerHeader = document.createElement('p');
 let startGameBtn = document.querySelector('#startBtn');
 let hint = document.createElement('p');
- 
-
+let hangman = document.querySelector('.hangman');
+let imgHM = document.createElement('img');
+let exit = document.querySelector('#exitBtn');
+let lblStrt = document.querySelector('#lblStr');
+let lblExit = document.querySelector('#lblExt');
 
 //Initialize Global Login Aux Varables
 let lvlSelected;
@@ -27,6 +30,9 @@ let lvlSelected;
 let rowCounter=0;
 let cellsCounter=0;
 let isTime;
+let triesLimit=6;
+let hmState=1;
+let isWon = false;
 
 
 //Crate Classes Player
@@ -82,10 +88,44 @@ class Word {
             document.querySelector('#secFrame').appendChild(character);
         });
         hint.innerText=this.hint;
-        document.querySelector('.hint').appendChild(hint);
+        document.querySelector('.hint').appendChild(hint);  
+    };
+    revealWord(selectedChar){
+        let wArry = this.word.split('');
+        let k=0;
+        let secFrame = document.querySelectorAll('.secFrame');
+        let gotChars=false;
+        let winCnt=0;
+        secFrame.forEach(element =>{
+            if(element.tagName === 'DIV'){
+                if(wArry[k] ===selectedChar.innerText){
+                    element.innerText = selectedChar.innerText;
+                    gotChars=true;
+                };
+                k++;
+            }; 
+        });
+         if(gotChars)
+            selectedChar.style.background='royalblue';
+         else{
+            selectedChar.style.background ='tomato';
+            triesLimit++;
+            hmState++;
+            changeHangman(hmState);
+         };
         
+        secFrame.forEach(e =>{
+            if(e.innerText!=='')
+                winCnt++;
+        });
+        if(winCnt === secFrame.length)
+             winGame();
+        else if(triesLimit===6)
+            loseGame();
+   
     };
 };
+let wordObj = new Word('x','x',0,0);
 //Functions
 function createRows (cant){
     cant += rowCounter;
@@ -114,15 +154,15 @@ function createCells (cant){
     return arr;
 };
 function createABC(){
+    tABC.innerHTML='';
     const abcKeyboard =['A','B','C','D','E','F','G','H','I','J','K','L',
                         'M','N','O','P','Q','R','S','T','U','V','W','X',
                         'Y','Z'];
-    
     abcKeyboard.forEach(element =>{
-        const abcDiv = document.createElement('div');
+        let abcDiv = document.createElement('div');
         abcDiv.setAttribute('class','abcFlex');
-        abcDiv.innerHTML =`<center><b>${element}</b></center>`;
-        tScore.appendChild(abcDiv);
+        abcDiv.innerText =element;
+        tABC.appendChild(abcDiv);
     });
 };
 function startTimer(duration, where) {
@@ -136,16 +176,13 @@ function startTimer(duration, where) {
         diff = duration - (((Date.now() - start) / 1000) | 0);
         minutes = (diff / 60) | 0;
         seconds = (diff % 60) | 0;
-
         minutes = minutes<10?"0"+minutes:minutes;
         seconds = seconds<10?"0"+seconds:seconds;
-
         where.innerText = minutes + ":" + seconds; 
-       // timeBox.appendChild(where);
 
         if (diff <= 0) {
+          loseGame(diff);
           clearInterval(t);
-          //start = Date.now() + 1000;
         
         }else if (diff <= 5){//Last five seconds alert
             if(r){
@@ -160,14 +197,18 @@ function startTimer(duration, where) {
     timer();
     let t = setInterval(timer,1000);
     isTime=t;
-
 };
-function startGame(){
-    let wordObj = getWord(player.gameLevel);
+function startGame(e){
+    e.preventDefault();
+    createABC();
+    triesLimit=0;
+    hmState=1;
+    isWon=false;
+    wordObj = getWord(player.gameLevel);
     wordObj.displayWord();
- 
- //startTimer(.3*60, timer);
-
+    hint.style.color ='whitesmoke';
+    changeHangman(hmState);
+    startTimer(.4*60, timer);
 };
 function hideCharacters(arr){
     let displayChr1='';
@@ -201,7 +242,6 @@ function hideCharacters(arr){
         }; 
         return arr;
 };
-
 function getWord (level) {
 let bank =[];
     switch(level){
@@ -223,10 +263,71 @@ let bank =[];
                     new Word('cascade','H','Hint: What C stands for in CSS'),
                     new Word('pennywise','H','Hint: Scariest clown in movies')];
     }; 
-    return bank[getRandomInt(0,3)];
+    return bank[getRandomInt(0,5)];
 };
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; 
   }; 
+function pickupCharacter (e){
+    e.preventDefault();
+    let target = e.target;
+    if(timer.innerText !== '00:00'&&target.textContent.length===1&&triesLimit<6&&!isWon){
+        wordObj.revealWord(target);
+    };
+};
+
+function winGame(){
+    hint.innerHTML = '&#x1F3C6 &#x1F389 &#x1F3C6 Y O U&nbsp;&nbsp;W I N &#x1F3C6 &#x1F389 &#x1F3C6';
+    hint.style.color ='gold';
+    isWon=true;
+    player.posScore++;
+    center1.children[3].children[0].innerText =player.posScore;
+    changeHangman(0);
+    clearInterval(isTime);   
+};
+function loseGame (loseTime){
+    loseTime===0?hint.innerHTML =`&#x23F0 &#x231B T I M E ' S&nbsp;&nbsp;O V E R &#x23F0 &#x231B`:hint.innerHTML = '&#x1F614 &#x1F614 Y O U&nbsp;&nbsp;L O S E &#x1F614 &#x1F614';
+    hint.style.color ='tomato';
+    isWon=false;
+    player.negScore++;
+    center1.children[3].children[1].innerText =player.negScore;
+    changeHangman(7);
+    clearInterval(isTime);   
+};
+
+function changeHangman (state){
+    let img='';
+    hangman.innerHTML='';
+    switch (state){
+        case 0://Winner
+            img = './img/mh0.png';
+            break;
+        case 1://Initial
+            img = './img/mh1.png';
+            break;
+        case 2://1st Strike
+            img = './img/mh2.png';
+            break;
+        case 3://2nd Strike
+            img = './img/mh3.png';
+            break;
+        case 4://3rd Strike
+            img = './img/mh4.png';
+            break;
+        case 5://4th Strike
+            img = './img/mh5.png';
+            break;
+        case 6://6th Strike
+            img = './img/mh6.png';
+            break;
+        case 7://Last Strike
+            img = './img/mh7.png';
+            break;          
+    };
+    imgHM.setAttribute('src',img);
+    imgHM.setAttribute('alt','Hangman')
+    imgHM.setAttribute('class','hangman');
+    hangman.appendChild(imgHM);
+};

@@ -7,25 +7,20 @@ body{
     padding: 0;
     height: 100vh;
     width: 100%;
-    box-sizing: border-box;
-    border-style: solid;
     display: grid;
     grid-template-rows: 98%;
     grid-template-columns: 25% 55% 20%;
 }
 .playerData{
     grid-column: 1;
-    border-style: solid;
     width: 88%;
     height: 20%;
     margin-left: 11%;
     margin-top: 15%;
     color:whitesmoke;
-    font-size: 1.2vw;
 }
 .abc{
     grid-column: 1;
-    border-style: solid;
     width: 88%; 
     height: 65%;
     margin-left: 11%;
@@ -34,25 +29,31 @@ body{
     flex-flow: row wrap;
     align-items: center;
     justify-items: center;
+ 
 }
 .abcFlex{
     width: 48%;
     border-style: solid;
     border-width: 2px;
     border-radius: 10px; 
-    height: 4vh;
     font-size: 30px;
+    background:seagreen;
+    text-align: center;
+    vertical-align: middle;
+    line-height:  4vh;
 }
-
+.abcFlex:hover{
+    opacity: 0.5;
+}   
 .title{
     grid-column: 2;
     width: 100%;
     height: 10%;
-    margin-top: 8%;
+    margin-top: 7%;
     background: url('../img/title.png');
     background-size: 80% 90%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
 }
 .hint{
     grid-column: 2;
@@ -62,18 +63,24 @@ body{
     text-align: center;
     font-style: italic;
     font-size: 1.5em;
-    border-style: solid;
-
 }
+.hint p{
+    grid-column: 2;
+    width: 54vw;
+    height: 10%;
+    color: whitesmoke;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.5em;
+    position: fixed;
+} 
 .board{
     grid-column: 2;
-    border-style: solid;
     width: 100%;
     height: 65%;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(3,1fr);
-
+    grid-template-rows: 1fr 1fr 6vh;
 }
 .secFrame{
 display: flex;
@@ -81,22 +88,49 @@ justify-content: space-around;
 flex-flow: row wrap;
 }
 .secFrame div{
-    border-bottom: white;
+    border-bottom: whitesmoke;
     border-bottom-style: solid;
-    height: 9vh;
+    height: 9.8vh;
     width: 5%;
     text-align: center;
-    font-size: 60px;
+    font-size: 4vw;
+    color: wheat;
 }
 .buttons{
     grid-column: 2;
-    border-style: solid;
     width: 100%;
-    height: 10%;
+    height: 9%;
+    display: flex;
+    flex-flow: row nowrap;
 }
+#startBtn{
+    width: 22vw;
+}
+#exitBtn{
+    width: 15vw;
+    margin-left: 1vw;
+}
+.trdFrame{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100%;
+}
+.lbl{
+    font-family: 'Gloria Hallelujah', cursive;
+    color: ivory;
+    font-weight: bolder;
+    font-size: 1.5vw;
+}
+#lblStr{
+   grid-column: 1;
+   text-align: center;
+}
+#lblExt{
+  grid-column: 2;
+  padding-left: 1.5vw;
+} 
 .timer{
     grid-column: 3;
-    border-style: solid;
     width: 85%;
     height: 20%;
     margin-right: 11%;
@@ -104,14 +138,20 @@ flex-flow: row wrap;
     color:whitesmoke;
     font-size: 1.5vw;
     text-align: center;
+    padding-top: 0.1px;
 }
 .hangman{
+    background-repeat: no-repeat;
+    background-size:50% 50%;
     grid-column: 3;
-    border-style: solid;
-    width: 85%;
     height: 65.5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    padding-top: 5px;
 }
-.abc table td{
-    border-style: solid;
-    width: 10.3vw;
+td{
+    width: 50% 50%;
+    font-size: 1.7vw;
 }
