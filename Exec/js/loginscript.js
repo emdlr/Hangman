@@ -48,7 +48,8 @@ logStart.addEventListener('click',startGame);
 
 //Functions
 function exitGame(e){
-    window.close();
+    window.history.go(-2);
+    //window.close();
 }
 function selectGameLevel(e){
     e.preventDefault();
