@@ -72,7 +72,7 @@ function startGame(e){
         let glStr = lvlSelected.innerText;
         sessionStorage.setItem('nameStr',nameStr);
         sessionStorage.setItem('glStr',glStr);
-        window.open('index.html');
+        window.open('Exec/hmgame.html');
         window.close();
     }else
         alert('Name or Game Level may be Missing');

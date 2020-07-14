@@ -1,6 +1,5 @@
 //Bringing object data from Login
 let player = new Player (sessionStorage.getItem('nameStr'),sessionStorage.getItem('glStr'),0,0);
-//let player = new Player('EDGAR', 'hard',0,0);
 let switch1=true;
 let switch2=true;
 window.opener;
@@ -13,7 +12,7 @@ createABC();
 startGameBtn.addEventListener('click',startGame);
 tABC.addEventListener('click',pickupCharacter);
 exit.onclick = function (e){
-    window.open('login.html');
+    window.open('../index.html');
     window.close();
 };
 startGameBtn.onmouseover = function () {
