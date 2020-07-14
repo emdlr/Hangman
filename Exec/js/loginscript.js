@@ -42,13 +42,13 @@ let chloginFrame = setInterval(() => {
 },1000);
 
 //Events
-logExit.addEventListener('click',exitGame);
+//logExit.addEventListener('click',exitGame);
 gameLevels.addEventListener('click',selectGameLevel);
 logStart.addEventListener('click',startGame);
 
 //Functions
 function exitGame(e){
-    window.history.go(-2);
+    //window.history.go(-1);
     //window.close();
 }
 function selectGameLevel(e){
