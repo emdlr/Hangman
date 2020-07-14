@@ -1,4 +1,5 @@
-![HangmanLogo](https://github.com/emdlr/Hangman/blob/master/Exec/img/icon.png =15x15)
+<img src="https://github.com/emdlr/Hangman/blob/master/Exec/img/icon.png" alt="HangmanLogo" width="15" height="15" />
+
 # Hangman Project
 ---
 **Project Name:** Hangman Game
@@ -30,7 +31,7 @@ This has to be eventually published and running from own GitHub regular account,
 **Use Case Diagram**
 ---
 
-![UseCaseDiagram](https://github.com/emdlr/Hangman/blob/master/Diagrams/uc.png =50x50)
+![UseCaseDiagram](https://github.com/emdlr/Hangman/blob/master/Diagrams/uc.png)
 
 **Project Plan**
 
