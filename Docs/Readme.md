@@ -1,4 +1,4 @@
-<img src="https://github.com/emdlr/Hangman/blob/master/Exec/img/icon.png" alt="HangmanLogo" width="15" height="15" />
+<img src="https://github.com/emdlr/Hangman/blob/master/Exec/img/icon.png" alt="HangmanLogo" width="50" height="50" />
 
 # Hangman Project
 ---
