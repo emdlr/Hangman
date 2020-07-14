@@ -1,4 +1,4 @@
-![HangmanLogo] (https://github.com/emdlr/Hangman/blob/master/Exec/img/title.png)
+![HangmanLogo](https://github.com/emdlr/Hangman/blob/master/Exec/img/title.png)
 # Hangman Project
 ---
 **Project Name:** Hangman Game
@@ -30,7 +30,7 @@ This has to be eventually published and running from own GitHub regular account,
 **Use Case Diagram**
 ---
 
-![UseCaseDiagram] (https://github.com/emdlr/Hangman/blob/master/Diagrams/uc.png)
+![UseCaseDiagram](https://github.com/emdlr/Hangman/blob/master/Diagrams/uc.png)
 
 **Project Plan**
 
@@ -67,7 +67,7 @@ All documentation will be store in the Hangman Project repository setup on GitHu
 
 1. Have the player put his/her name to display it on the board
 2. Have the player select the game difficulty decided to go for:
-    1. There can be only 3 options:
+    - There can be only 3 options:
         - **Hard:** Long length words
         - **Medium:** Medium length words
         - **Easy:** Short length word
@@ -76,32 +76,31 @@ All documentation will be store in the Hangman Project repository setup on GitHu
         - The letter is revealed in all the spaces it fits in the word.
     - *If Not:*
         - A member of the body of the hangman is drawn on the board
-4. The player takes another turn guessing a letter. J 
+4. The player takes another turn guessing a letter. 
 5. The game continues until:
-
-Until the word/phrase is guessed (all letters are revealed) – **WINNER** else
+The word/phrase is guessed (all letters are revealed) – **WINNER** else
 all the parts of the hangman are displayed – **LOSER**.
 
 **Flow Diagram**
 ---
 
-![FlowDiagram] (https://github.com/emdlr/Hangman/blob/master/Diagrams/flowdiagram.png)
+![FlowDiagram](https://github.com/emdlr/Hangman/blob/master/Diagrams/flowdiagram.png)
 
 **Wireframes**
 ---
 **Login**
 
-![Wireframe1] (https://github.com/emdlr/Hangman/blob/master/Diagrams/wf1.png)
+![Wireframe1](https://github.com/emdlr/Hangman/blob/master/Diagrams/wf1.png)
 
 **Main Game Window**
 
-![Wireframe1] (https://github.com/emdlr/Hangman/blob/master/Diagrams/wf2.png)
+![Wireframe1](https://github.com/emdlr/Hangman/blob/master/Diagrams/wf2.png)
 
 **Installation**
 
 - Internet Connectivity
 - No high Internet speed required
-- Click on the [LINK] (https://emdlr.github.io/Hangman/) and have fun!
+- Click on the [LINK](https://emdlr.github.io/Hangman/) and have fun!
 
 **More Data**
-You can also take a look to the [project document] (https://github.com/emdlr/Hangman/blob/master/Docs/Charter%20Hangman%20Game.docx) for more info.
+You can also take a look to the [project document](https://github.com/emdlr/Hangman/blob/master/Docs/Charter%20Hangman%20Game.docx) for more info.
