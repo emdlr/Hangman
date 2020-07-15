@@ -288,18 +288,21 @@ function winGame(){
         hint.innerHTML ='&#x1F3C6 WON&nbsp;&nbsp;GAME (ALL WORDS)&#x1F389';
         bank = loadBank(player.gameLevel);
         reset=true;
+        animateHint('ON');
     }else if(isLastW&&player.posScore<player.negScore){
         hint.innerHTML ='&#x1F614 LOST&nbsp;&nbsp;GAME (ALL WORDS)&#x1F614';
         hint.style.color ='tomato';
         bank = loadBank(player.gameLevel);
         changeHangman(7);
         reset=true;
+        animateHint('ON');
     }else if(isLastW&&player.posScore===player.negScore){
         hint.innerHTML ='&#x1F91D NO&nbsp;&nbsp;WINNER (ALL WORDS)&#x1F91D';
         hint.style.color ='green';
         bank = loadBank(player.gameLevel);
         reset=true;
         changeHangman(1);
+        animateHint('ON');
     };
 };
 function loseGame (loseTime){
@@ -315,16 +318,19 @@ function loseGame (loseTime){
         hint.style.color ='gold';
         bank = loadBank(player.gameLevel);
         reset=true;
+        animateHint('ON');
         changeHangman(0);
     }else if(isLastW&&player.posScore<player.negScore){
         hint.innerHTML ='&#x1F614 LOST&nbsp;&nbsp;GAME (ALL WORDS)&#x1F614';
         bank = loadBank(player.gameLevel);
+        animateHint('ON');
         reset=true;
     }else if(isLastW&&player.posScore===player.negScore){
         hint.innerHTML ='&#x1F91D NO&nbsp;&nbsp;WINNER (ALL WORDS)&#x1F91D';
         hint.style.color ='green';
         bank = loadBank(player.gameLevel);
         reset=true;
+        animateHint('ON');
         changeHangman(1);
     };
 };
@@ -401,4 +407,12 @@ function resetGame(){
     reset=false;
     center1.children[3].children[0].innerText =player.posScore;
     center1.children[3].children[1].innerText =player.negScore;
+    animateHint('OFF');
+};
+function animateHint(vSwitch){
+    let txt='';
+    if(vSwitch==='ON')
+        txt='magnify'
+    
+    hint.style.webkitAnimationName =txt;
 };
