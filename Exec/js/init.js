@@ -415,5 +415,4 @@ function animateHint(vSwitch){
         txt='magnify'
     
     hint.style.webkitAnimationName =txt;
-    
 };
