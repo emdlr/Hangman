@@ -1,6 +1,5 @@
 //Naming Login Header and bittons 
 loginHeader.innerText = 'Hangman Game';
-// logExit.innerText='Exit';
 logStart.innerText='Start';
 loginName.setAttribute('placeholder','Enter Player Name');
 window.opener;
@@ -40,17 +39,9 @@ let chloginFrame = setInterval(() => {
         isFLabel=true;
     };
 },1000);
-
 //Events
-//logExit.addEventListener('click',exitGame);
 gameLevels.addEventListener('click',selectGameLevel);
 logStart.addEventListener('click',startGame);
-
-//Functions
-// function exitGame(e){
-//     window.history.back();
-//     window.close();
-// }
 function selectGameLevel(e){
     e.preventDefault();
     let target = e.target;
@@ -63,7 +54,6 @@ function selectGameLevel(e){
         lvlSelected.setAttribute('class','levelSelected');
     };
 };
-
 function startGame(e){
     e.preventDefault();
     if(lvlSelected!==undefined&&loginName.value!==''){
@@ -71,8 +61,8 @@ function startGame(e){
         let glStr = lvlSelected.innerText;
         sessionStorage.setItem('nameStr',nameStr);
         sessionStorage.setItem('glStr',glStr);
-        window.open('Exec/hmgame.html','_self');
-        //window.close();
+        window.open('Exec/hmgame.html');
+        window.close();
     }else
         alert('Name or Game Level may be Missing');
 };

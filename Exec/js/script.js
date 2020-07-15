@@ -3,11 +3,10 @@ let player = new Player (sessionStorage.getItem('nameStr'),sessionStorage.getIte
 let switch1=true;
 let switch2=true;
 window.opener;
-
 //Create Player Data
 player.myGameData(createRows(3),createCells(5));
 createABC();
-
+let bank = loadBank(player.gameLevel);
 //Event Listeners
 startGameBtn.addEventListener('click',startGame);
 tABC.addEventListener('click',pickupCharacter);

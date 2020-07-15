@@ -1,11 +1,9 @@
- 
 //Initialize Login Variables from Objects
 let loginLabels = document.querySelectorAll('.mainlogin label');
 const loginHeader = document.querySelector('.login-title');
 const loginName = document.querySelector('.mainlogin input');
 const mainLogin = document.querySelector('.mainlogin');
 const gameLevels = document.querySelector('.level-list');
-//const logExit = document.querySelector('#exit-login');
 const logStart = document.querySelector('#start-game');
 //Initialize Index Variables from Objects
 const playerData = document.querySelector('.playerData');
@@ -33,8 +31,8 @@ let isTime;
 let triesLimit=6;
 let hmState=1;
 let isWon = false;
-
-
+let isLastW=false;
+let reset =false;
 //Crate Classes Player
 class Player {
     constructor(name,gameLevel,posScore,negScore){
@@ -113,7 +111,6 @@ class Word {
             hmState++;
             changeHangman(hmState);
          };
-        
         secFrame.forEach(e =>{
             if(e.innerText!=='')
                 winCnt++;
@@ -122,7 +119,6 @@ class Word {
              winGame();
         else if(triesLimit===6)
             loseGame();
-   
     };
 };
 let wordObj = new Word('x','x',0,0);
@@ -200,15 +196,27 @@ function startTimer(duration, where) {
 };
 function startGame(e){
     e.preventDefault();
+    if(reset) resetGame();
+     
     createABC();
     triesLimit=0;
     hmState=1;
     isWon=false;
-    wordObj = getWord(player.gameLevel);
-    wordObj.displayWord();
-    hint.style.color ='whitesmoke';
-    changeHangman(hmState);
-    startTimer(.4*60, timer);
+    wordObj = getWord();
+    if(isLastW&&wordObj===''){
+        if(player.posScore>player.negScore){
+            player.posScore--;
+            winGame();
+        }else{ 
+            player.negScore--;
+            loseGame(1);
+        }; 
+    }else{
+        wordObj.displayWord();
+        hint.style.color ='whitesmoke';
+        changeHangman(hmState);
+        startTimer(0.4*60, timer);
+    };
 };
 function hideCharacters(arr){
     let displayChr1='';
@@ -242,28 +250,19 @@ function hideCharacters(arr){
         }; 
         return arr;
 };
-function getWord (level) {
-let bank =[];
-    switch(level){
-        case 'EASY':
-            bank = [new Word('apple','E','Hint: Common Red fruit'),
-                    new Word('plane','E','Hint: Sky transportation'),
-                    new Word('coke','E','Hint: Most popular soda brand'),
-                    new Word('cat','E','Hint: Second most common home pet')];
-            break;
-        case 'MEDIUM':
-            bank = [new Word('soccer','M','Hint: Popular sport'),
-                    new Word('tokio','M',`Hint: Japan's capital`),
-                    new Word('cancun','M','Hint: Famous Beach in Mexico'),
-                    new Word('window','M','Hint: Microsoft logo')];
-            break;
-        default:
-            bank = [new Word('neverland','H','Hint:Michael Jacksons park name'),
-                    new Word('daenerys','H','Hint: Mother of Dragons'),
-                    new Word('cascade','H','Hint: What C stands for in CSS'),
-                    new Word('pennywise','H','Hint: Scariest clown in movies')];
-    }; 
-    return bank[getRandomInt(0,5)];
+function getWord () {
+    let wTosend ='';
+    if (bank.length>1){
+        let wordIdx = getRandomInt(0,bank.length-1);
+        wTosend = bank[wordIdx];
+        bank.splice(wordIdx,1);
+    }else if (bank.length===1){
+        let wordIdx = getRandomInt(0,bank.length-1);
+        wTosend = bank[wordIdx];
+        bank.splice(wordIdx,1);
+        isLastW=true;
+    };
+    return wTosend;
 };
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -277,15 +276,31 @@ function pickupCharacter (e){
         wordObj.revealWord(target);
     };
 };
-
 function winGame(){
-    hint.innerHTML = '&#x1F3C6 &#x1F389 &#x1F3C6 Y O U&nbsp;&nbsp;W I N &#x1F3C6 &#x1F389 &#x1F3C6';
+    hint.innerHTML =  '&#x1F3C6 &#x1F389 &#x1F3C6 Y O U&nbsp;&nbsp;W I N &#x1F3C6 &#x1F389 &#x1F3C6';
     hint.style.color ='gold';
     isWon=true;
     player.posScore++;
     center1.children[3].children[0].innerText =player.posScore;
     changeHangman(0);
     clearInterval(isTime);   
+    if(isLastW&&player.posScore>player.negScore){
+        hint.innerHTML ='&#x1F3C6 WON&nbsp;&nbsp;GAME (ALL WORDS)&#x1F389';
+        bank = loadBank(player.gameLevel);
+        reset=true;
+    }else if(isLastW&&player.posScore<player.negScore){
+        hint.innerHTML ='&#x1F614 LOST&nbsp;&nbsp;GAME (ALL WORDS)&#x1F614';
+        hint.style.color ='tomato';
+        bank = loadBank(player.gameLevel);
+        changeHangman(7);
+        reset=true;
+    }else if(isLastW&&player.posScore===player.negScore){
+        hint.innerHTML ='&#x1F91D NO&nbsp;&nbsp;WINNER (ALL WORDS)&#x1F91D';
+        hint.style.color ='green';
+        bank = loadBank(player.gameLevel);
+        reset=true;
+        changeHangman(1);
+    };
 };
 function loseGame (loseTime){
     loseTime===0?hint.innerHTML =`&#x23F0 &#x231B T I M E ' S&nbsp;&nbsp;O V E R &#x23F0 &#x231B`:hint.innerHTML = '&#x1F614 &#x1F614 Y O U&nbsp;&nbsp;L O S E &#x1F614 &#x1F614';
@@ -295,8 +310,24 @@ function loseGame (loseTime){
     center1.children[3].children[1].innerText =player.negScore;
     changeHangman(7);
     clearInterval(isTime);   
+    if(isLastW&&player.posScore>player.negScore){
+        hint.innerHTML ='&#x1F3C6 WON&nbsp;&nbsp;GAME (ALL WORDS)&#x1F389';
+        hint.style.color ='gold';
+        bank = loadBank(player.gameLevel);
+        reset=true;
+        changeHangman(0);
+    }else if(isLastW&&player.posScore<player.negScore){
+        hint.innerHTML ='&#x1F614 LOST&nbsp;&nbsp;GAME (ALL WORDS)&#x1F614';
+        bank = loadBank(player.gameLevel);
+        reset=true;
+    }else if(isLastW&&player.posScore===player.negScore){
+        hint.innerHTML ='&#x1F91D NO&nbsp;&nbsp;WINNER (ALL WORDS)&#x1F91D';
+        hint.style.color ='green';
+        bank = loadBank(player.gameLevel);
+        reset=true;
+        changeHangman(1);
+    };
 };
-
 function changeHangman (state){
     let img='';
     hangman.innerHTML='';
@@ -330,4 +361,44 @@ function changeHangman (state){
     imgHM.setAttribute('alt','Hangman')
     imgHM.setAttribute('class','hangman');
     hangman.appendChild(imgHM);
+};
+function loadBank (lvl){
+    let words=[];
+    switch(lvl){
+        case 'EASY':
+            words = [new Word('apple','E','Hint: Common Red fruit'),
+                    new Word('plane','E','Hint: Sky transportation'),
+                    new Word('coke','E','Hint: Most popular soda brand'),
+                    new Word('yoda','E',`Hint: Luck Skywalker's master`),
+                    new Word('washington','E','Hint: First USA president'),
+                    new Word('cat','E','Hint: Second most common home pet'),
+                    new Word('honey','E',`Hint: Most Famous Bee's product`)];
+            break;
+        case 'MEDIUM':
+            words = [new Word('soccer','M','Hint: Popular sport'),
+                    new Word('tokio','M',`Hint: Japan's capital`),
+                    new Word('cancun','M','Hint: Famous Beach in Mexico'),
+                    new Word('window','M','Hint: Microsoft logo'),
+                    new Word('Dino','M',`Hint: Flintstones' Pet name`),
+                    new Word('corona','M','Hint: Famos Mexican beer name'),
+                    new Word('hitler','M','Hint: Famous Nazi Leader')];
+            break;
+        default:
+            words = [new Word('neverland','H','Hint:Michael Jacksons park name'),
+                    new Word('daenerys','H','Hint: Mother of Dragons'),
+                    new Word('cascade','H','Hint: What C stands for in CSS'),
+                    new Word('pennywise','H','Hint: Scariest clown in movies'),
+                    new Word('beagle','H',`Charly Brown Dog's Breed`),
+                    new Word('evergreen','H','Hint: World war 2 start year'),
+                    new Word('victoria','H',`Hint:Famous Queen of England`)];
+    }; 
+    return words;
+};
+function resetGame(){
+    player.negScore=0;
+    player.posScore=0;
+    isLastW=false;
+    reset=false;
+    center1.children[3].children[0].innerText =player.posScore;
+    center1.children[3].children[1].innerText =player.negScore;
 };
